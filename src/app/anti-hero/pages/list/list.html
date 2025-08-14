@@ -1,0 +1,10 @@
+<p>Smart Component - List</p>
+<app-anti-hero-list
+[antiHeroes]="antiHeroes"
+[headers]="headers"
+(antiHero)="selectAntiHero($event)"
+(antiHero)="deleteHero($event)"
+(antiHero)="editHero($event)">
+</app-anti-hero-list>
+<div>{{output.firstName}}</div>
+
