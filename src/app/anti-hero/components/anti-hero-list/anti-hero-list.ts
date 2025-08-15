@@ -1,18 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AntiHero } from '../../../core/models/anti-hero';
-import { Header } from '../../../core/models/header';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { TableActions } from '../../../core/enums/table-actions-enum';
+import {CommonModule} from '@angular/common';
+import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
+import {AntiHero} from '../../../core/models/anti-hero';
+import {Header} from '../../../core/models/header';
+import {TableActions} from '../../../core/enums/table-actions-enum';
+import {MaterialModule} from '../../../material/material-module';
+import {CommandBarActions} from "../../../core/enums/command-bar-actions-enum";
 
 @Component({
   selector: 'app-anti-hero-list',
   templateUrl: './anti-hero-list.html',
-  styleUrl: './anti-hero-list.css',
+  standalone: true,
   imports: [
-    CommonModule, MatIconModule, MatTableModule
-  ]
+    CommonModule,
+    MaterialModule
+  ],
+  styleUrl: './anti-hero-list.css'//,
+  // imports: [
+  //   CommonModule, MatIconModule, MatTableModule
+  // ]
 })
 export class AntiHeroList implements OnInit {
   @Input()
@@ -20,7 +25,11 @@ export class AntiHeroList implements OnInit {
   @Input()
   headers: Array<Header> = [];
   @Output()
-  antiHero = new EventEmitter<{antiHero:AntiHero, action :TableActions}>();
+  antiHeroDelete = new EventEmitter<{ antiHero: AntiHero, action: TableActions }>();
+  @Output()
+  antiHeroSelect = new EventEmitter<{ antiHero: AntiHero, action: TableActions }>();
+  @Output()
+  antiHeroEdit = new EventEmitter<{ antiHero: AntiHero, action: TableActions }>();
   headerFields: string[] = [];
 
   // This component is responsible for displaying a list of anti-heroes.
@@ -32,18 +41,22 @@ export class AntiHeroList implements OnInit {
   }
 
   getHeaderFields() {
-    this.headerFields = this.headers.map((data) =>
-      data.fieldName);
+    this.headerFields = this.headers.map((data) => data.fieldName);
     this.headerFields.push("actions");
-}
+  }
 
-  deleteHero(antiHero: AntiHero, action:TableActions) {
-    this.antiHero.emit({antiHero, action});
+  deleteAntiHero(antiHero: AntiHero, action: TableActions) {
+    this.antiHeroDelete.emit({antiHero, action});
   }
-  editHero(antiHero: AntiHero, action:TableActions) {
-    this.antiHero.emit({antiHero, action});
+
+  editAntiHero(antiHero: AntiHero, action: TableActions) {
+    this.antiHeroEdit.emit({antiHero, action});
   }
-  selectAntiHero(antiHero: AntiHero, action:TableActions) {
-    this.antiHero.emit({antiHero, action});
+
+  selectAntiHero(antiHero: AntiHero, action: TableActions) {
+    this.antiHeroSelect.emit({antiHero, action});
   }
+
+    protected readonly CommandBarActions = CommandBarActions;
+  protected readonly TableActions = TableActions;
 }

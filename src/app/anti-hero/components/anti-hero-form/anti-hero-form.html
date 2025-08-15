@@ -1,1 +1,35 @@
-<p>anti-hero-form works!</p>
+<mat-card class="form-card">
+  <mat-card-header>
+    <mat-card-title>{{ selectedId ? 'Update Anti-Hero' : 'Create Anti-Hero' }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="anti-hero-form" [formGroup]="antiHeroForm" >
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" id="firstname" name="firstname" formControlName="firstName"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" id="lastname" name="lastname" formControlName="lastName"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Known As</mat-label>
+        <input matInput type="text" id="knownAs" name="knownAs" formControlName="knownAs"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>House</mat-label>
+        <input matInput type="text" id="house" name="house" formControlName="house"/>
+      </mat-form-field>
+      <mat-card-actions class="button-group">
+        <button mat-raised-button color="primary" (click)="emitAction()">
+          <mat-icon>save</mat-icon>
+          {{ actionButtonLabel }}
+        </button>
+        <button mat-raised-button color="warn" (click)="clear()">
+          <mat-icon>clear</mat-icon>
+          Clear
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

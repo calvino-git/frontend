@@ -1,10 +1,18 @@
-<p>Smart Component - List</p>
+<p>
+  <mat-toolbar color="primary">
+    <button mat-raised-button color="primary" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Angular CRUD</span>
+  </mat-toolbar>
+</p>
+<app-anti-hero-command-bar (action)="executeCommandBarAction($event)"></app-anti-hero-command-bar>
 <app-anti-hero-list
-[antiHeroes]="antiHeroes"
-[headers]="headers"
-(antiHero)="selectAntiHero($event)"
-(antiHero)="deleteHero($event)"
-(antiHero)="editHero($event)">
+  [antiHeroes]="antiHeroes"
+  [headers]="headers"
+  (antiHeroSelect)="selectAntiHero($event)"
+  (antiHeroDelete)="deleteAntiHero($event)"
+  (antiHeroEdit)="editAntiHero($event)">
 </app-anti-hero-list>
 <div>{{output.firstName}}</div>
 

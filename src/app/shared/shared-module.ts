@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Navbar } from './layout/navbar/navbar';
 import { Footer } from './layout/footer/footer';
 import { MaterialModule } from "../material/material-module";
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -12,7 +13,8 @@ import { MaterialModule } from "../material/material-module";
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
 ],
   exports: [
     Navbar, Footer

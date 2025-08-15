@@ -1,26 +1,24 @@
-<p>Dumb component - AntiHeroeList</p>
 <table mat-table [dataSource]="antiHeroes" class="mat-elevation-z8">
   <ng-container *ngFor="let item of headers" [matColumnDef]="item.fieldName">
-    <th mat-header-cell *matHeaderCellDef="">{{ item.headerName }}</th>
+    <th mat-header-cell *matHeaderCellDef>{{ item.headerName }}</th>
     <td mat-cell *matCellDef="let hero">{{ hero[item.fieldName] }}</td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
-          <button (click)="selectAntiHero(element, 0)"
-            mat-raised-button color="primary">
-              <mat-icon>pageview</mat-icon> View
+          <button style="margin: 5px" (click)="selectAntiHero(element, TableActions.View)" mat-raised-button color="primary">
+            <mat-icon>pageview</mat-icon><span>View</span>
           </button>
-          &nbsp;
-          <button (click)="selectAntiHero(element, 1)"
-            mat-raised-button color="warn">
-              <mat-icon>delete</mat-icon> Delete
+          <button style="margin: 5px" name="edit" (click)="editAntiHero(element, TableActions.Edit)" mat-raised-button color="basic">
+            <mat-icon>edit</mat-icon> Edit
+          </button>
+          <button style="margin: 5px" (click)="deleteAntiHero(element, TableActions.Delete)" mat-raised-button color="warn">
+            <mat-icon>delete</mat-icon> Delete
           </button>
       </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="headerFields">
   </tr>
-  <tr mat-row *matRowDef="let row; columns:
-    headerFields"></tr>
+  <tr mat-row *matRowDef="let row; columns:headerFields"></tr>
 </table>
