@@ -4,29 +4,40 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HeaderInterceptor} from './core/interceptors/header.interceptor';
+import {AntiHeroEffects} from './anti-hero/state/anti-hero.effects';
 
-export const routes: Routes = [
+const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'anti-heroes',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full",
   },
   {
-    path: 'anti-heroes',
-    loadChildren: () => import('./anti-hero/anti-hero-module').then(m => m.AntiHeroModule)
+    path: "login",
+    loadChildren: () =>
+      import("./auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "register",
+    loadChildren: () =>
+      import("./auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "anti-heroes",
+    loadChildren: () =>
+      import("./anti-hero/anti-hero.module").then((m) =>
+        m.AntiHeroModule),
   }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({},{}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-      autoPause: true
-    }),
-    EffectsModule.forRoot()
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutesModule { }

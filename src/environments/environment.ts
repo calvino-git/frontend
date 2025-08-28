@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiURL: "http://localhost:8080/api/v1",
-  authURL: "http://localhost:8080"
+  authURL: "http://localhost:8080",
+  jwt: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYWx2aW4uaWxva2lAeWFob28uZnIiLCJpYXQiOjE3NTYzNzY0NTksImV4cCI6MTc1NjQxMjQ1OX0.NbeSgRebPRA69Tc2KuOiOTlNRqckwNyXzfBjbkIspUw"
 };
 
 /*

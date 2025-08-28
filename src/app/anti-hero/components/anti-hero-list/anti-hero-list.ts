@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import {AntiHero} from '../../../core/models/anti-hero';
+import {AntiHero} from '../../models/anti-hero';
 import {Header} from '../../../core/models/header';
 import {TableActions} from '../../../core/enums/table-actions-enum';
 import {MaterialModule} from '../../../material/material-module';
@@ -9,19 +9,14 @@ import {CommandBarActions} from "../../../core/enums/command-bar-actions-enum";
 @Component({
   selector: 'app-anti-hero-list',
   templateUrl: './anti-hero-list.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MaterialModule
-  ],
-  styleUrl: './anti-hero-list.css'//,
+  styleUrls: ['./anti-hero-list.css']//,
   // imports: [
   //   CommonModule, MatIconModule, MatTableModule
   // ]
 })
 export class AntiHeroList implements OnInit {
   @Input()
-  antiHeroes: Array<AntiHero> = [];
+  antiHeroes: ReadonlyArray<AntiHero> = [];
   @Input()
   headers: Array<Header> = [];
   @Output()

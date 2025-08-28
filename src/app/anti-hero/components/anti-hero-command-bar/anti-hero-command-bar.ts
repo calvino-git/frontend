@@ -7,14 +7,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-anti-hero-command-bar',
-  imports: [
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule
-  ],
   templateUrl: './anti-hero-command-bar.html',
-  standalone: true,
-  styleUrl: './anti-hero-command-bar.css'
+  styleUrls: ['./anti-hero-command-bar.css']
 })
 export class AntiHeroCommandBar implements OnInit{
   @Output()

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {AntiHero} from '../../core/models/anti-hero';
+import {AntiHero} from '../models/anti-hero';
 export enum AntiHeroActions {
   GET_ANTI_HERO_LIST = '[Anti-Hero] Get Anti-Hero list',
   SET_ANTI_HERO_LIST = '[Anti-Hero] Set Anti-Hero list',

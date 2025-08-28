@@ -4,8 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-form',
   templateUrl: './form.html',
-  styleUrl: './form.css',
-  standalone: false
+  styleUrls: ['./form.css']
 })
 export class Form implements OnInit{
   id = ''

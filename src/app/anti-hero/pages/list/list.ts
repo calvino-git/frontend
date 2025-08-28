@@ -1,28 +1,30 @@
 import {Component, OnInit} from '@angular/core';
-import {AntiHero} from '../../../core/models/anti-hero';
+import {AntiHero} from '../../models/anti-hero';
 import {Header} from '../../../core/models/header';
 import {TableActions} from '../../../core/enums/table-actions-enum';
 import {CommandBarActions} from '../../../core/enums/command-bar-actions-enum';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {AntiHeroState} from '../../models/anti-hero.state';
 import {selectAntiHeroes} from '../../state/anti-hero.selectors';
+import {AntiHeroActions} from '../../state/anti-hero.actions';
+import {Observable} from 'rxjs';
+import {AppState} from '../../../state/app.state';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.html',
-  styleUrl: './list.css',
-  standalone: false
+  styleUrls: ['./list.css']
 })
 export class List implements OnInit {
   // This component is responsible for displaying a list of anti-heroes.
   // It can be used to fetch and display data from a service or API.
-  antiHeroes: AntiHero[] = [
-    {id: '1', firstName: 'AntiHero One', lastName: 'Invisibility', house: 'Light', kownAs: 'Shadow'},
-    {id: '2', firstName: 'AntiHero Two', lastName: 'Super Strength', house: 'Dark', kownAs: 'Titan'},
-    {id: '3', firstName: 'AntiHero Three', lastName: 'Flight', house: 'Neutral', kownAs: 'Falcon'},
-    {id: '4', firstName: 'AntiHero Four', lastName: 'Telepathy', house: 'Light', kownAs: 'Mind Reader'}
-  ];
+  antiHeroes: ReadonlyArray<AntiHero> = [];
+  //   AntiHero[] = [
+  //   {id: '1', firstName: 'AntiHero One', lastName: 'Invisibility', house: 'Light', kownAs: 'Shadow'},
+  //   {id: '2', firstName: 'AntiHero Two', lastName: 'Super Strength', house: 'Dark', kownAs: 'Titan'},
+  //   {id: '3', firstName: 'AntiHero Three', lastName: 'Flight', house: 'Neutral', kownAs: 'Falcon'},
+  //   {id: '4', firstName: 'AntiHero Four', lastName: 'Telepathy', house: 'Light', kownAs: 'Mind Reader'}
+  // ];
   antiHeroes$ = this.store.select(selectAntiHeroes);
 
   headers: Array<Header> = [
@@ -31,13 +33,14 @@ export class List implements OnInit {
     {headerName: 'House', fieldName: 'house'},
     {headerName: 'Known As', fieldName: 'kownAs'}
   ];
-  output: AntiHero = {id: '', firstName: '', lastName: '', house: '', kownAs: ''};
 
-  constructor(private router: Router, private store: Store<AntiHeroState>) {
+  constructor(private router: Router, private store: Store<AppState>) {
     // You can inject services here if needed.
   }
 
   ngOnInit(): void {
+    this.store.dispatch({type: AntiHeroActions.GET_ANTI_HERO_LIST});
+    this.assignAntiHeroes();
   }
 
   deleteAntiHero(obj: { antiHero: AntiHero, action: TableActions }) {
@@ -51,8 +54,6 @@ export class List implements OnInit {
   }
 
   selectAntiHero(obj: { antiHero: AntiHero, action: TableActions }) {
-    // Logic to select an anti-hero
-    this.output = obj.antiHero;
     console.log(`Triggered event: ${obj.antiHero.firstName} : ${obj.action.toString()}`);
     this.router.navigate(['anti-heroes/form', obj.antiHero.id])
   }
@@ -67,5 +68,9 @@ export class List implements OnInit {
       case CommandBarActions.Delete: return
       default : ""
     }
+  }
+
+  assignAntiHeroes(){
+    this.antiHeroes$.subscribe((data)=>{this.antiHeroes = data});
   }
 }

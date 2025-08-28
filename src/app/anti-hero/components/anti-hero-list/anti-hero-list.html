@@ -7,13 +7,13 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
-          <button style="margin: 5px" (click)="selectAntiHero(element, TableActions.View)" mat-raised-button color="primary">
+          <button style="margin: 5px" (click)="selectAntiHero(element, 0)" mat-raised-button color="primary">
             <mat-icon>pageview</mat-icon><span>View</span>
           </button>
-          <button style="margin: 5px" name="edit" (click)="editAntiHero(element, TableActions.Edit)" mat-raised-button color="basic">
+          <button style="margin: 5px" name="edit" (click)="editAntiHero(element, 1)" mat-raised-button color="accent">
             <mat-icon>edit</mat-icon> Edit
           </button>
-          <button style="margin: 5px" (click)="deleteAntiHero(element, TableActions.Delete)" mat-raised-button color="warn">
+          <button style="margin: 5px" (click)="deleteAntiHero(element, 2)" mat-raised-button color="warn">
             <mat-icon>delete</mat-icon> Delete
           </button>
       </td>

@@ -13,16 +13,7 @@ interface NgOnInit {
 @Component({
   selector: 'app-anti-hero-form',
   templateUrl: './anti-hero-form.html',
-  styleUrl: './anti-hero-form.css',
-  imports: [
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatButton,
-    ReactiveFormsModule,
-    MatInput
-  ],
-  standalone: true
+  styleUrls: ['./anti-hero-form.css']
 })
 export class AntiHeroForm implements OnInit {
   @Input()
