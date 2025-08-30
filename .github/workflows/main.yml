@@ -18,8 +18,9 @@
               node-version: '20' # or your desired Node.js version
 
           - name: Install dependencies
-            run: npm install
-
+            run: |
+                npm install
+                npm install -g @angular/cli
           - name: Build Angular application
             run: ng build --configuration production --base-href /frontend/ # Adjust base-href if needed
 
