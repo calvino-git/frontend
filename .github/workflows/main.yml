@@ -38,5 +38,4 @@
 
           - name: Upload Pages artifact
             uses: actions/upload-pages-artifact@v3
-            with:
-              path: ./dist/frontend> # Adjust path to your build output directory
+            
