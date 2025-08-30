@@ -16,10 +16,10 @@
 
 .button-group {
   margin-bottom: 15px;
-  button {
+}
+button {
     margin-right: 10px;
     float: right;
-  }
 }
 
 mat-form-field{
