@@ -15,7 +15,7 @@
           - name: Setup Node.js
             uses: actions/setup-node@v4
             with:
-              node-version: '20' # or your desired Node.js version
+              node-version: '13' # or your desired Node.js version
 
           - name: Install dependencies
             run: |
